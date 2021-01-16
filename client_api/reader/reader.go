@@ -2,7 +2,6 @@ package reader
 
 import (
 	"context"
-	"fmt"
 	"os"
 
 	"github.com/FanFani4/ports/ports"
@@ -20,8 +19,6 @@ type JSONReader struct {
 }
 
 func NewJSONReader(ctx context.Context, log *logrus.Logger, jsonPath string) (*JSONReader, error) {
-	fmt.Println("jsonPath", jsonPath)
-
 	file, err := os.Open(jsonPath)
 	if err != nil {
 		return nil, errors.Wrap(err, "failed to open file")
