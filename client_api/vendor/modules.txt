@@ -1,4 +1,4 @@
-# github.com/FanFani4/ports/ports v0.0.0-20210116161422-cb5a005e6754
+# github.com/FanFani4/ports/ports v0.0.0-20210116170405-61b49ae9f09a
 ## explicit
 github.com/FanFani4/ports/ports
 # github.com/andybalholm/brotli v1.0.1
@@ -7,7 +7,8 @@ github.com/andybalholm/brotli
 # github.com/bcicen/jstream v1.0.1
 ## explicit
 github.com/bcicen/jstream
-# github.com/golang/protobuf v1.4.2
+# github.com/golang/protobuf v1.4.3
+## explicit
 github.com/golang/protobuf/proto
 github.com/golang/protobuf/ptypes
 github.com/golang/protobuf/ptypes/any
@@ -37,23 +38,27 @@ github.com/valyala/bytebufferpool
 github.com/valyala/fasthttp
 github.com/valyala/fasthttp/fasthttputil
 github.com/valyala/fasthttp/stackless
-# golang.org/x/net v0.0.0-20201016165138-7b1cca2348c0
+# golang.org/x/net v0.0.0-20201224014010-6772e930b67b
+## explicit
 golang.org/x/net/http/httpguts
 golang.org/x/net/http2
 golang.org/x/net/http2/hpack
 golang.org/x/net/idna
 golang.org/x/net/internal/timeseries
 golang.org/x/net/trace
-# golang.org/x/sys v0.0.0-20200930185726-fdedc70b468f
+# golang.org/x/sys v0.0.0-20210113181707-4bcb84eeeb78
+## explicit
 golang.org/x/sys/internal/unsafeheader
 golang.org/x/sys/unix
 golang.org/x/sys/windows
-# golang.org/x/text v0.3.3
+# golang.org/x/text v0.3.5
+## explicit
 golang.org/x/text/secure/bidirule
 golang.org/x/text/transform
 golang.org/x/text/unicode/bidi
 golang.org/x/text/unicode/norm
-# google.golang.org/genproto v0.0.0-20200526211855-cb27e3aa2013
+# google.golang.org/genproto v0.0.0-20210114201628-6edceaf6022f
+## explicit
 google.golang.org/genproto/googleapis/rpc/status
 # google.golang.org/grpc v1.35.0
 ## explicit

@@ -7,6 +7,7 @@ import (
 	"strconv"
 	"syscall"
 
+	"github.com/FanFani4/ports/client_api/api"
 	"github.com/FanFani4/ports/client_api/reader"
 	"github.com/FanFani4/ports/client_api/sender"
 	"github.com/FanFani4/ports/ports"
@@ -34,7 +35,14 @@ func main() {
 
 	portsResponse := reader.GetPorts()
 
-	go runSync(log, portsResponse)
+	conn, err := grpc.Dial(os.Getenv("SERVER_ADDR"), grpc.WithInsecure())
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
+
+	cli := ports.NewPortDomainServiceClient(conn)
+
+	go runSync(log, portsResponse, cli)
 
 	port := os.Getenv("PORT")
 	if _, err = strconv.Atoi(port); err != nil {
@@ -47,7 +55,8 @@ func main() {
 	}
 
 	s := &fasthttp.Server{
-		Logger: log,
+		Logger:  log,
+		Handler: api.NewAPI(log, cli).HandleFasthttp,
 	}
 
 	go func() {
@@ -74,13 +83,8 @@ func main() {
 	log.Println("\nShutting down the server...")
 }
 
-func runSync(log *logrus.Logger, portsResponse <-chan *ports.Port) {
-	conn, err := grpc.Dial(os.Getenv("SERVER_ADDR"), grpc.WithInsecure(), grpc.WithBlock())
-	if err != nil {
-		log.Fatalf("did not connect: %v", err)
-	}
+func runSync(log *logrus.Logger, portsResponse <-chan *ports.Port, cli ports.PortDomainServiceClient) {
 
-	cli := ports.NewPortDomainServiceClient(conn)
 	sender := sender.NewSender(context.Background(), log, cli)
 
 	sender.Send(portsResponse)
