@@ -5,7 +5,5 @@ COPY . /root/data/
 
 RUN go build .
 
-# cmd curl mongo:27017
-
-cmd /root/data/port_domain_service
+ENTRYPOINT ["/root/data/port_domain_service"]
 
