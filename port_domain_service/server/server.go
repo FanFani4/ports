@@ -45,7 +45,7 @@ func (s *Server) List(ctx context.Context, args *ports.ListArgs) (*ports.ListRes
 
 	resp.Count = count
 
-	cursor, err := s.db.Find(ctx, nil, opts)
+	cursor, err := s.db.Find(ctx, bson.M{}, opts)
 	if err != nil {
 		return nil, err
 	}
