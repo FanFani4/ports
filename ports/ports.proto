@@ -1,0 +1,40 @@
+syntax = "proto3";
+package ports;
+
+service PortDomainService {
+  rpc Insert(Port) returns (InsertResponse) {}
+  rpc Get(GetArgs) returns (Port) {}
+  rpc List(ListArgs) returns (ListResponse) {}
+}
+
+message GetArgs {
+  string id = 1;
+}
+
+message ListArgs {
+  int64 limit = 1;
+  int64 skip = 2;
+}
+
+message ListResponse {
+  int64 count = 1;
+  repeated Port ports = 2;
+}
+
+message Port {
+  string id = 1;
+  string name = 2;
+  string city = 3;
+  string country = 4;
+  repeated string alias = 5;
+  repeated string regions = 6;
+  repeated float coordinates = 7;
+  string province = 8;
+  string timezone = 9;
+  repeated string unlocs = 10;
+  string code = 11;
+}
+
+message InsertResponse {
+  bool success = 1;
+}
